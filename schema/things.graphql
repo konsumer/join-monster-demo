@@ -1,16 +1,16 @@
 type Query {
-  things: [Thing]!
-  thing(id: ID!): Thing!
+  things: [Thing]! @sql
+  thing(id: ID!): Thing! @sql
 }
 
 type Mutation {
-  createThing(input: ThingCreate): Thing!
-  updateThing(input: ThingUpdate): Thing!
-  deleteThing(id: ID!): Thing!
+  createThing(input: ThingCreate): Thing! @sql
+  updateThing(input: ThingUpdate): Thing! @sql
+  deleteThing(id: ID!): Thing! @sql
 }
 
-type Thing {
-  id: ID!
+type Thing @sql {
+  id: ID! 
   title: String!
 }
 

@@ -4,9 +4,9 @@ import { ApolloServer } from 'apollo-server-express'
 import merge from 'lodash.merge'
 import { mergeTypes } from 'merge-graphql-schemas'
 import { makeExecutableSchema } from 'graphql-tools'
-import joinMonsterAdapt from 'join-monster-graphql-tools-adapter'
 
 import knex from './db'
+import schemaDirectives from './schemaDirectives'
 
 // this might all seem a bit over-engineered for a simple single-graphql type with CRUD
 // but it adds up when you have a bunch
@@ -20,7 +20,13 @@ const typeDefs = mergeTypes(
     // put more types here
   ],
   { all: true }
-)
+) + `
+directive @sql (
+  table: String
+  key: String = "id"
+  alwaysFetch: Boolean
+) on OBJECT | FIELD_DEFINITION
+`
 
 const { _sql, ...resolvers } = merge(
   {},
@@ -29,13 +35,10 @@ const { _sql, ...resolvers } = merge(
 )
 
 const schema = makeExecutableSchema({
+  schemaDirectives,
   typeDefs,
   resolvers
 })
-
-if (_sql) {
-  joinMonsterAdapt(schema, _sql)
-}
 
 const server = new ApolloServer({
   schema,

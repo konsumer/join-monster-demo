@@ -14,13 +14,3 @@ db.raw = (...args) => {
   console.log('SQL', args)
   return dbRaw.apply(db, args)
 }
-
-// generic joinMonster resolver
-export const sqlResolver = (parent, args, ctx, resolveInfo) => {
-  return joinMonster(resolveInfo, args, sql => ctx.knex.raw(sql), { dialect })
-}
-
-// generic where clause
-export const fieldWhere = (table, args, obj) => {
-  return `${table}.id = ${args.id || obj.id}`
-}
