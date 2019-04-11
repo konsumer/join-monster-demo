@@ -1,4 +1,4 @@
-import { dialect, sqlResolver, fieldWhere } from '../db'
+import { sqlResolver, fieldWhere } from '../db'
 
 export default {
   Query: {
