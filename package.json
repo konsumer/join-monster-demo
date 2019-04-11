@@ -1,0 +1,40 @@
+{
+  "name": "join-monster-demo",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "babel-node index.js",
+    "db": "knex migrate:latest",
+    "postinstall": "npm run db"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konsumer/join-monster-demo.git"
+  },
+  "author": "David Konsumer <konsumer@jetboystudio.com> (http://konsumer.js.org)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/konsumer/join-monster-demo/issues"
+  },
+  "homepage": "https://github.com/konsumer/join-monster-demo#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.4.3",
+    "apollo-server-express": "^2.4.8",
+    "express": "^4.16.4",
+    "graphql": "^0.13.2",
+    "graphql-tools": "^4.0.4",
+    "join-monster": "^2.1.0",
+    "join-monster-graphql-tools-adapter": "0.0.3",
+    "knex": "^0.16.3",
+    "lodash.merge": "^4.6.1",
+    "merge-graphql-schemas": "^1.5.8",
+    "sqlite3": "^4.0.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.3",
+    "babel-plugin-graphql-tag": "^2.1.0",
+    "babel-plugin-import-graphql": "^2.7.0"
+  }
+}

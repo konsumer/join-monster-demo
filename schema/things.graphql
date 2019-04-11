@@ -1,0 +1,24 @@
+type Query {
+  things: [Thing]!
+  thing(id: ID!): Thing!
+}
+
+type Mutation {
+  createThing(input: ThingCreate): Thing!
+  updateThing(input: ThingUpdate): Thing!
+  deleteThing(id: ID!): Thing!
+}
+
+type Thing {
+  id: ID!
+  title: String!
+}
+
+input ThingUpdate {
+  id: ID!
+  title: String
+}
+
+input ThingCreate {
+  title: String!
+}
