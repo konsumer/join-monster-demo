@@ -16,7 +16,7 @@ export default {
     },
 
     deleteThing: async (parent, { id }, ctx, resolveInfo) => {
-      const _filled = await sqlResolver(parent, { id }, ctx, resolveInfo)
+      const _filled = (await ctx.knex('things').select('*').where({ id }))[0] || false
       await await ctx.knex('things').where({ id }).del()
       // there will not be a record after this, so I look it up first and return it with _filled
       return { _filled }
