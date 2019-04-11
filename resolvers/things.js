@@ -9,6 +9,7 @@ export default {
   Mutation: {
     createThing: async (parent, { input }, ctx, resolveInfo) => {
       const [id] = await ctx.knex('things').insert(input)
+      console.log({ id })
       return sqlResolver(parent, { id }, ctx, resolveInfo)
     },
 
@@ -19,7 +20,7 @@ export default {
 
     deleteThing: async (parent, { id }, ctx, resolveInfo) => {
       const changed = await sqlResolver(parent, { id }, ctx, resolveInfo)
-      await ctx.knex('things').select('*').where({ id }).del()
+      await await ctx.knex('things').where({ id }).del()
       // there will not be a record after this, so I look it up first and return it with _filled
       return changed
     }

@@ -21,4 +21,6 @@ export const sqlResolver = (parent, args, ctx, resolveInfo) => {
 }
 
 // generic where clause
-export const fieldWhere = (table, args) => `${table}.id = ${args.id}`
+export const fieldWhere = (table, args, obj) => {
+  return `${table}.id = ${args.id || obj.id}`
+}
